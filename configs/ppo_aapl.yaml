@@ -1,0 +1,44 @@
+# PPO Configuration for AAPL Trading
+
+# Experiment
+exp_name: "ppo_aapl_base"
+seed: 42
+
+# Data
+ticker: "AAPL"
+start_date: "2014-01-01"
+end_date: "2024-01-01"
+data_dir: "data"
+add_indicators: false
+
+# Data splits
+train_pct: 0.7
+val_pct: 0.15
+test_pct: 0.15
+
+# Environment
+window_size: 30
+initial_balance: 10000.0
+shares_per_trade: 10
+transaction_cost_pct: 0.0
+max_shares: 1000
+normalize: true
+features: ["close", "volume"]
+
+# PPO Agent
+lr: 0.0003
+gamma: 0.99
+gae_lambda: 0.95
+clip_epsilon: 0.2
+value_coef: 0.5
+entropy_coef: 0.01
+max_grad_norm: 0.5
+hidden_dims: [256, 128]
+
+# Training
+n_episodes: 500
+ppo_epochs: 10
+batch_size: 64
+val_frequency: 10
+early_stopping_patience: 30
+use_cuda: true

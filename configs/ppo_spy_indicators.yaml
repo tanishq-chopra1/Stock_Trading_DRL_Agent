@@ -1,0 +1,45 @@
+# PPO Configuration for SPY Trading with Technical Indicators
+
+# Experiment
+exp_name: "ppo_spy_indicators"
+seed: 42
+
+# Data
+ticker: "SPY"
+start_date: "2010-01-01"
+end_date: "2020-01-01"  # Pre-COVID only to avoid distribution shift
+data_dir: "data"
+add_indicators: true  # Enable technical indicators
+
+# Data splits
+train_pct: 0.7
+val_pct: 0.15
+test_pct: 0.15
+
+# Environment
+window_size: 30
+initial_balance: 10000.0
+shares_per_trade: 10
+transaction_cost_pct: 0.0  # Removed for initial learning
+max_shares: 1000
+normalize: true
+features: ["open", "high", "low", "close", "volume", "returns", "sma_10", "sma_30", "rsi", "volatility_10"]  # OHLCV + indicators
+
+# PPO Agent - Balanced for normalized rewards
+lr: 0.0001  # Increase - can learn faster with normalized rewards
+gamma: 0.99
+gae_lambda: 0.95
+clip_epsilon: 0.2
+value_coef: 0.5  # Increase - value loss is now manageable
+entropy_coef: 0.01  # Reduce - less randomness
+max_grad_norm: 0.5
+hidden_dims: [128, 64]  # Increase - need capacity for larger state
+dropout: 0.1  # Reduce - less aggressive
+
+# Training
+n_episodes: 1000
+ppo_epochs: 6  # Moderate updates per batch
+batch_size: 128  # Larger batches
+val_frequency: 10
+early_stopping_patience: 50
+use_cuda: true

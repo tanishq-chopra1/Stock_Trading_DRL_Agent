@@ -1,0 +1,75 @@
+# CSCE 642: Deep RL Stock Trading with PPO
+
+**Team Members:**
+- Tanishq Chopra (436000948)
+- Simran Kaur (335006983)
+
+## Project Overview
+
+Implementation of a Proximal Policy Optimization (PPO) agent from scratch for single-stock trading using daily OHLCV data. The project includes a custom Gym-style trading environment and comprehensive baseline comparisons.
+
+## Project Structure
+
+```
+├── data/                   # Cached stock data
+├── src/
+│   ├── environment/       # Trading environment
+│   ├── agents/            # PPO implementation
+│   ├── baselines/         # Baseline strategies
+│   ├── utils/             # Data processing, metrics
+│   └── config/            # Configuration files
+├── experiments/           # Training runs and results
+├── notebooks/             # Analysis and visualization
+└── tests/                 # Unit tests
+```
+
+## Setup
+
+```bash
+pip install -r requirements.txt
+```
+
+## Quick Start
+
+1. Download data:
+```bash
+python src/utils/download_data.py --ticker SPY --start 2014-01-01 --end 2024-01-01
+```
+
+2. Train PPO agent:
+```bash
+python train.py --config configs/ppo_spy.yaml
+```
+
+3. Evaluate:
+```bash
+python evaluate.py --checkpoint experiments/ppo_spy_base_20251110_204750/best_model.pth --split test --deterministic
+```
+
+## Metrics
+
+- Cumulative Return (CAGR)
+- Sharpe Ratio
+- Maximum Drawdown
+- Turnover
+- % Profitable Days
+
+## Baselines
+
+- Buy-and-Hold
+- Random Policy
+- Moving Average Crossover
+
+## Stretch Goals
+
+- Transaction costs and slippage
+- Short selling with risk controls
+- Continuous action space
+- Soft Actor-Critic (SAC) comparison
+- Multi-asset portfolio (5-10 tickers)
+
+pip install -r requirements.txt
+python test_setup.py
+python quick_start.py
+python train.py --config configs/ppo_spy.yaml
+python evaluate.py --config configs/ppo_spy.yaml --checkpoint experiments/*/best_model.pth --split test
