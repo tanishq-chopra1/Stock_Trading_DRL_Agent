@@ -1,10 +1,10 @@
 """Evaluate a saved PPO model on a selected split (train/val/test).
 
 Usage examples (PowerShell):
-    python evaluate.py --config configs/ppo_spy.yaml --checkpoint experiments/ppo_spy_base_20250.../best_model.pth --split test
+    python3 evaluate.py --config configs/ppo_spy.yaml --checkpoint experiments/ppo_spy_base_20250.../best_model.pth --split test
 
 WSL example:
-    wsl bash -c "cd '/mnt/c/Users/tanis/Desktop/Sem 3 TAMU/CSCE 642 Deep Reinforcement Learning/StockTrading DRL Project' && source venv/bin/activate && python evaluate.py --config configs/ppo_spy.yaml --checkpoint experiments/ppo_spy_base_YYYYMMDD_HHMMSS/best_model.pth --split test"
+    wsl bash -c "cd '/mnt/c/Users/tanis/Desktop/Sem 3 TAMU/CSCE 642 Deep Reinforcement Learning/StockTrading DRL Project' && source venv/bin/activate && python3 evaluate.py --config configs/ppo_spy.yaml --checkpoint experiments/ppo_spy_base_YYYYMMDD_HHMMSS/best_model.pth --split test"
 
 If --checkpoint is omitted, the script will try to find the latest experiments folder that matches the config exp_name and use its best_model.pth.
 """

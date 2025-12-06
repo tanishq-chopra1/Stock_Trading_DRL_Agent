@@ -26,6 +26,16 @@ Implementation of a Proximal Policy Optimization (PPO) agent from scratch for si
 ## Setup
 
 ```bash
+# Create virtual environment
+python3 -m venv venv
+
+# Activate virtual environment
+# Windows:
+venv\Scripts\activate
+# Mac/Linux:
+source venv/bin/activate
+
+# Install dependencies
 pip install -r requirements.txt
 ```
 
@@ -33,17 +43,17 @@ pip install -r requirements.txt
 
 1. Download data:
 ```bash
-python src/utils/download_data.py --ticker SPY --start 2014-01-01 --end 2024-01-01
+python3 src/utils/data_utils.py --ticker SPY --start 2010-01-01 --end 2020-01-01
 ```
 
 2. Train PPO agent:
 ```bash
-python train.py --config configs/ppo_spy.yaml
+python3 train.py --config configs/ppo_spy.yaml
 ```
 
 3. Evaluate:
 ```bash
-python evaluate.py --checkpoint experiments/ppo_spy_base_20251110_204750/best_model.pth --split test --deterministic
+python3 evaluate.py --checkpoint experiments/ppo_spy_base_20251206_104906/final_model.pth --split test --deterministic
 ```
 
 ## Metrics
@@ -69,7 +79,7 @@ python evaluate.py --checkpoint experiments/ppo_spy_base_20251110_204750/best_mo
 - Multi-asset portfolio (5-10 tickers)
 
 pip install -r requirements.txt
-python test_setup.py
-python quick_start.py
-python train.py --config configs/ppo_spy.yaml
-python evaluate.py --config configs/ppo_spy.yaml --checkpoint experiments/*/best_model.pth --split test
+python3 test_setup.py
+python3 quick_start.py
+python3 train.py --config configs/ppo_spy.yaml
+python3 evaluate.py --config configs/ppo_spy.yaml --checkpoint experiments/*/best_final_model.pth --split test

@@ -44,10 +44,10 @@ def main():
     print("\nYour project is ready. Here's what you can do next:\n")
     
     print("🎯 Train the PPO agent:")
-    print("   python train.py --config configs/ppo_spy.yaml\n")
+    print("   python3 train.py --config configs/ppo_spy.yaml\n")
     
     print("📊 Evaluate the trained model:")
-    print("   python evaluate.py --config configs/ppo_spy.yaml --checkpoint experiments/*/best_model.pth\n")
+    print("   python3 evaluate.py --config configs/ppo_spy.yaml --checkpoint experiments/*/best_model.pth\n")
     
     print("🔬 Try different configurations:")
     print("   - configs/ppo_spy.yaml (basic)")

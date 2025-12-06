@@ -1,7 +1,3 @@
-"""
-Quick test script to verify environment and agent setup
-"""
-
 import numpy as np
 import sys
 sys.path.append('src')
@@ -110,17 +106,17 @@ def test_agent():
         _ = agent.select_action(state, deterministic=False)
         reward = np.random.randn()
         done = False
-        agent.store_reward_and_done(reward, done)
+        agent.store_reward(reward, done)
     
     print("✓ Trajectory storage works")
     print(f"  Stored {len(agent.states)} transitions")
     
     # Test update
     next_state = np.random.randn(23).astype(np.float32)
-    metrics = agent.update(next_state, n_epochs=2, batch_size=5)
+    metrics = agent.update(n_epochs=2, batch_size=5)
     
     print("✓ Policy update works")
-    print(f"  Loss: {metrics['loss']:.4f}")
+    print(f"  Loss: {metrics['total_loss']:.4f}")
     
     print("✓ Agent tests passed!\n")
 
@@ -168,9 +164,9 @@ def main():
         print("="*60)
         print("\nYour project setup is working correctly!")
         print("\nNext steps:")
-        print("1. Download data: python src/utils/data_utils.py --ticker SPY")
-        print("2. Train model: python train.py --config configs/ppo_spy.yaml")
-        print("3. Evaluate: python evaluate.py --config configs/ppo_spy.yaml --checkpoint experiments/*/best_model.pth")
+        print("1. Download data: python3 src/utils/data_utils.py --ticker SPY")
+        print("2. Train model: python3 train.py --config configs/ppo_spy.yaml")
+        print("3. Evaluate: python3 evaluate.py --config configs/ppo_spy.yaml --checkpoint experiments/*/final_model.pth")
         
     except Exception as e:
         print(f"\n✗ Test failed with error: {e}")
