@@ -53,7 +53,7 @@ python3 train.py --config configs/ppo_spy.yaml
 
 3. Evaluate:
 ```bash
-python3 evaluate.py --checkpoint experiments/ppo_spy_base_20251206_104906/final_model.pth --split test --deterministic
+python3 evaluate.py --checkpoint experiments/ppo_spy_base_20251206_120220/final_model.pth --split test --deterministic
 ```
 
 ## Metrics
@@ -82,4 +82,4 @@ pip install -r requirements.txt
 python3 test_setup.py
 python3 quick_start.py
 python3 train.py --config configs/ppo_spy.yaml
-python3 evaluate.py --config configs/ppo_spy.yaml --checkpoint experiments/*/best_final_model.pth --split test
+python3 evaluate.py --config configs/ppo_spy.yaml --checkpoint experiments/*/final_model.pth --split test
