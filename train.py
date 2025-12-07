@@ -4,6 +4,7 @@ Training script for PPO agent on stock trading
 
 import torch
 import numpy as np
+import pandas as pd
 import argparse
 import yaml
 from pathlib import Path
@@ -100,6 +101,7 @@ def train_ppo(config: dict):
     
     best_val_sharpe = -np.inf
     patience_counter = 0
+    training_logs = []
     
     for episode in range(config['n_episodes']):
         # Training episode
@@ -133,6 +135,22 @@ def train_ppo(config: dict):
             print(f"Train - Return: {train_stats['total_return']:.2%}, Sharpe: {train_stats['sharpe_ratio']:.2f}")
             print(f"Val   - Return: {val_stats['total_return']:.2%}, Sharpe: {val_stats['sharpe_ratio']:.2f}")
             print(f"Loss: {metrics['total_loss']:.4f}, Policy: {metrics['policy_loss']:.4f}, Value: {metrics['value_loss']:.4f}")
+            
+            # Log metrics
+            log_entry = {
+                'episode': episode + 1,
+                'train_total_return': train_stats['total_return'],
+                'train_sharpe_ratio': train_stats['sharpe_ratio'],
+                'val_total_return': val_stats['total_return'],
+                'val_sharpe_ratio': val_stats['sharpe_ratio'],
+                'policy_loss': metrics['policy_loss'],
+                'value_loss': metrics['value_loss'],
+                'total_loss': metrics['total_loss']
+            }
+            training_logs.append(log_entry)
+            
+            # Save logs to CSV
+            pd.DataFrame(training_logs).to_csv(exp_dir / 'training_log.csv', index=False)
             
             # Early stopping based on validation Sharpe ratio
             if val_stats['sharpe_ratio'] > best_val_sharpe:

@@ -266,7 +266,7 @@ def create_summary_report(
     # 4. Metrics comparison
     plot_metrics_comparison(
         comparison_df,
-        metrics=['total_return', 'sharpe_ratio', 'max_drawdown', 'calmar_ratio'],
+        metrics=['total_return', 'sharpe_ratio', 'max_drawdown'],
         title="Performance Metrics Comparison",
         save_path=output_path / "metrics_comparison.png"
     )

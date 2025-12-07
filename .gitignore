@@ -11,10 +11,7 @@ dist/
 build/
 
 # Data and experiments
-data/*.csv
-experiments/*/
 !experiments/.gitkeep
-*.pth
 *.pkl
 
 # IDE
