@@ -11,16 +11,20 @@ Implementation of a Proximal Policy Optimization (PPO) agent from scratch for si
 ## Project Structure
 
 ```
-├── data/                   # Cached stock data
+├── configs/           # Configuration files
+├── data/              # Stock data
+├── experiments/       # Training logs and checkpoints
 ├── src/
-│   ├── environment/       # Trading environment
-│   ├── agents/            # PPO implementation
-│   ├── baselines/         # Baseline strategies
-│   ├── utils/             # Data processing, metrics
-│   └── config/            # Configuration files
-├── experiments/           # Training runs and results
-├── notebooks/             # Analysis and visualization
-└── tests/                 # Unit tests
+│   ├── agents/        # PPO Agent implementation
+│   ├── baselines/     # Trading baselines
+│   ├── environment/   # Custom Trading Environment
+│   └── utils/         # Helper functions
+├── evaluate.py        # Evaluation script
+├── download_data.py   # Data download script
+├── quick_start.py     # Automates setup and training
+├── test_setup.py      # Environment verification script
+├── train.py           # Training script
+└── visualize_results.py # Visualization script
 ```
 
 ## Setup
@@ -56,6 +60,11 @@ python3 train.py --config configs/ppo_spy.yaml
 python3 evaluate.py --checkpoint experiments/ppo_spy_base_20251206_120220/final_model.pth --split test --deterministic
 ```
 
+4. Visualize Results:
+```bash
+python3 visualize_results.py
+```
+
 ## Metrics
 
 - Cumulative Return (CAGR)
@@ -68,7 +77,9 @@ python3 evaluate.py --checkpoint experiments/ppo_spy_base_20251206_120220/final_
 
 - Buy-and-Hold
 - Random Policy
-- Moving Average Crossover
+- Moving Average Crossover (SMA)
+- Momentum Strategy
+- RSI Strategy
 
 ## Stretch Goals
 
@@ -77,9 +88,3 @@ python3 evaluate.py --checkpoint experiments/ppo_spy_base_20251206_120220/final_
 - Continuous action space
 - Soft Actor-Critic (SAC) comparison
 - Multi-asset portfolio (5-10 tickers)
-
-pip install -r requirements.txt
-python3 test_setup.py
-python3 quick_start.py
-python3 train.py --config configs/ppo_spy.yaml
-python3 evaluate.py --config configs/ppo_spy.yaml --checkpoint experiments/*/final_model.pth --split test
