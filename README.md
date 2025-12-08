@@ -78,11 +78,6 @@ python3 evaluate.py --checkpoint experiments/ppo_spy_base_20251206_120220/final_
 python3 visualize_results.py
 ```
 
-4. Visualize Results:
-```bash
-python3 visualize_results.py
-```
-
 ## Metrics
 
 - Cumulative Return (CAGR)
